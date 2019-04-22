@@ -17,6 +17,7 @@
     "rimraf": "^2.6.3"
   },
   "dependencies": {
+    "kardia-tool": "0.0.13-3",
     "tronweb": "^2.2.9"
   }
 }
