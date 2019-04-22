@@ -1,5 +1,4 @@
 import KardiaTool from 'kardia-tool';
-
 import kardiaAbi from '../kai/abi';
 
 // KARDIA
@@ -15,10 +14,17 @@ const GET_ADDRESS_FROM_TYPE = "getAddressFromType";
 const UPDATE_RATE = "updateRate";
 const GET_RATE = "getRate";
 
+const RATE = {
+  "TRX": 16571,
+  "NEO": 6482133
+};
+
 // TRON
+const TRON = "TRX";
 const TRX_CONTRACT_HASH = "41d69c86eeaa2c1ea0e2db91a64c2ed5814ec66470";
 
 // NEO
+const NEO = "NEO";
 const NEO_CONTRACT_HASH = "00a68d7d38d9f56bb88195dabee2160321b047d110";
 const NEO_CONTRACT_ADDRESS = "AHJoAbhenvrgSqUpfLWuwy55Lyi596MEt3";
 
@@ -68,16 +74,16 @@ export const setup = async () => {
   console.log(tx.transactionHash);
 
   console.log("setting NEO contract hash");
-  tx = await invoke(UPDATE_AVAILABLE_TYPE, ["NEO", NEO_CONTRACT_HASH]);
+  tx = await invoke(UPDATE_AVAILABLE_TYPE, [NEO, NEO_CONTRACT_HASH]);
   console.log(tx.transactionHash);
 
   // set rate
   console.log("Updating rate NEO-TRX");
-  tx = await invoke(UPDATE_RATE, ["NEO", "TRX", 6482133, 16571]);
+  tx = await invoke(UPDATE_RATE, [NEO, TRON, RATE[NEO], RATE[TRON]]);
   console.log(tx.transactionHash);
 
   console.log("Updating rate TRX-NEO");
-  tx = await invoke(UPDATE_RATE, ["TRX", "NEO", 16571, 6482133]);
+  tx = await invoke(UPDATE_RATE, [TRON, NEO, RATE[TRON], RATE[NEO]]);
   console.log(tx.transactionHash);
 
   return await test();
@@ -137,10 +143,10 @@ export const getOwner = async () => {
     // get owner
     let result = await invoke(GET_OWNER, [], false);
     if (!result) {
-      console.log(result);
       count++;
       await delay(2000);
     } else {
+      console.log(result);
       return true;
     }
   }
@@ -155,11 +161,11 @@ export const getRate = async (fromType, toType) => {
     // get owner
     let result = await invoke(GET_RATE, [fromType, toType], false);
     if (!result) {
-      console.log(result);
       count++;
       await delay(2000);
     } else {
-      return true;
+      console.log(result);
+      return (result.fromAmount === RATE[fromType] && result.receivedAmount === RATE[toType])
     }
   }
 };
