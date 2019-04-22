@@ -28,7 +28,7 @@ const NEO = "NEO";
 const NEO_CONTRACT_HASH = "00a68d7d38d9f56bb88195dabee2160321b047d110";
 const NEO_CONTRACT_ADDRESS = "AHJoAbhenvrgSqUpfLWuwy55Lyi596MEt3";
 
-const delay = (ms) => {
+export const delay = (ms) => {
   return new Promise(function (resolve, reject) {
     setTimeout(resolve, ms);
   });
@@ -169,9 +169,3 @@ export const getRate = async (fromType, toType) => {
     }
   }
 };
-
-setup().then(function(msg) {
-  console.log(msg);
-}).catch(e => {
-  console.log(e);
-});
