@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel --presets es2015 -d lib/ src && node lib/app.js"
+    "start": "babel --presets es2015 -d lib/ src && node lib/e2e.js",
+    "setup": "babel --presets es2015 -d lib/ src && node lib/setup.js"
   },
   "author": "",
   "license": "ISC",

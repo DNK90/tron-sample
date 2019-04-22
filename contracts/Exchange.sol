@@ -2,24 +2,13 @@ pragma solidity ^0.4.23;
 
 contract Exchange {
 
-    struct History {
-        uint256 id;
-        address sender;
-        string receiver;
-        uint256 amount;
-        string destinationSource;
-    }
-
     // owner who has admin permissions
     address owner;
     // availableTypes are allowed types for the Exchange
     mapping(string => bool) availableTypes;
 
-    // history list
-    mapping(address => History[]) histories;
-
-    // id
-    uint256 id;
+    // event fired while depositing
+    event onDeposit(address sender, string receiver, string destination, uint256 amount);
 
     modifier onlyadmin {
         require (
@@ -31,8 +20,8 @@ contract Exchange {
 
     constructor() public {
         owner = msg.sender;
-        availableTypes["ETH-TRX"] = true;
-        id = 0;
+        availableTypes["NEO"] = true;
+        availableTypes["TRX"] = true;
     }
 
     // isValidType checks if input type is in availableTypes or not
@@ -44,15 +33,17 @@ contract Exchange {
     // Deposit: sender call this function and send eth to this function
     function deposit(string receiver, string destination) public payable {
         if (isValidType(destination)) {
-            History memory history = History(id, msg.sender, receiver, msg.value, destination);
-            histories[msg.sender].push(history);
-            id = id + 1;
+            emit onDeposit(msg.sender, receiver, destination, msg.value);
         }
     }
 
-    // Release TRX to targeted TRX address
+    // addType adds new type to availableTypes
+    function addType(string _type) public onlyadmin {
+        availableTypes[_type] = true;
+    }
+
+    // Release ETH to targeted ETH address
     function release(address receiver, uint256 amount) public onlyadmin {
         receiver.transfer(amount);
     }
-
 }

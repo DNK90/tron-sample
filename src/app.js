@@ -1,13 +1,13 @@
 import TronWeb from "tronweb";
 
-const contractAddress = "413b4c5dfdd72d4795b31c62fc006525d1bb9d85fb";
-const privateKey = "9102fb099738a6c49192ab1bd3b765f3129c831a99db99cd780eb8856ff47c74";
-const owner = "4171f88d9456825364aebabc4ffa70c1814b26df39";
+const contractAddress = "41d69c86eeaa2c1ea0e2db91a64c2ed5814ec66470";
+const privateKey = "da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0";
+const owner = "41928c9af0651632157ef27a2cf17ca72c575a4d21";
 
 const tronWeb = new TronWeb(
-  "http://127.0.0.1:9090",
-  "http://127.0.0.1:8091",
-  "http://127.0.0.1:9090",
+  "http://35.198.253.44:9090",
+  "http://35.240.187.29:18191",
+  "http://35.198.253.44:9090",
   privateKey,
 );
 
@@ -53,6 +53,6 @@ const release = () => {
 // freezeEnergy();
 // freezeBandwidth
 // release();
-deposit();
+// deposit();
 // sendTransaction();
 

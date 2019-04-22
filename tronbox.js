@@ -1,10 +1,10 @@
 module.exports = {
   networks: {
     development: {
-      privateKey: '9102fb099738a6c49192ab1bd3b765f3129c831a99db99cd780eb8856ff47c74',
-      fullNode: "http://127.0.0.1:9090",
-      solidityNode: "http://127.0.0.1:8091",
-      eventServer: "http://127.0.0.1:9090",
+      privateKey: 'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0',
+      fullNode: "http://35.198.253.44:9090",
+      solidityNode: "http://35.240.187.29:18191",
+      eventServer: "http://35.198.253.44:9090",
       network_id: "*"
     }
   }
