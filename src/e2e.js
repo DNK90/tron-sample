@@ -40,8 +40,9 @@ const deposit = async () => {
 
 const getPendingOrders = async () => {
   let count = 0;
-  while(count < 5) {
+  while(count < 10) {
     const orders = await invoke(GET_PENDING_ORDERS, ["TRX", "NEO"], false);
+    console.log(`pendingOrders: ${orders}`);
     if (orders || orders.length > 0) {
       return orders;
     }
@@ -53,7 +54,9 @@ const getPendingOrders = async () => {
 
 // test does e2e testing
 export const test = async () => {
-  await deposit();
+  console.log("depositing");
+  let tx = await deposit();
+  console.log(tx);
   // delay 10s
   await(10000);
 
