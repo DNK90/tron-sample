@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "kardia-tool": "0.0.13-3",
-    "tronweb": "^2.2.9"
+    "tronweb": "^2.2.9",
+    "@cityofzion/neon-js": "^4.3.3"
   }
 }
