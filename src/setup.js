@@ -134,7 +134,7 @@ export const setup = async () => {
 
   console.log(utf8ToHex(NEO_CONTRACT_HASH));	
 
-  set owner
+  // set owner
   console.log("setting owner");
   let tx = await invoke(SET_OWNER, []);
   console.log(tx.transactionHash);
